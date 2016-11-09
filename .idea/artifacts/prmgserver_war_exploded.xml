@@ -7,6 +7,18 @@
         <element id="directory" name="classes">
           <element id="module-output" name="prmgserver" />
         </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/prmgserver/web/WEB-INF/lib/commons-collections.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/prmgserver/web/WEB-INF/lib/commons-beanutils-20100804.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/prmgserver/web/WEB-INF/lib/commons-dbcp-1.4.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/prmgserver/web/WEB-INF/lib/commons-dbutils-1.4.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/prmgserver/web/WEB-INF/lib/commons-lang.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/prmgserver/web/WEB-INF/lib/commons-logging.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/prmgserver/web/WEB-INF/lib/commons-pool-1.5.6.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/prmgserver/web/WEB-INF/lib/ezmorph-1.0.6.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/prmgserver/web/WEB-INF/lib/json_new.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/prmgserver/web/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar" />
+        </element>
       </element>
     </root>
   </artifact>

@@ -36,8 +36,8 @@ public class HelpDetailServlet extends HttpServlet {
         details.add(detail);
 
         HelpDetail detail2=new HelpDetail();
-        detail.setTitle("怎么购买2？");
-        detail.setContent("不知道2");
+        detail2.setTitle("怎么购买2？");
+        detail2.setContent("不知道2");
         details.add(detail2);
 
         Map<String ,Object> data=new java.util.HashMap<String,Object>();

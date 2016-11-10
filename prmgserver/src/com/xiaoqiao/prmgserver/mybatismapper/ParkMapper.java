@@ -1,6 +1,9 @@
 package com.xiaoqiao.prmgserver.mybatismapper;
 
 import com.xiaoqiao.prmgserver.bean.ParkDetail;
+import com.xiaoqiao.prmgserver.bean.ParkName;
+
+import java.util.List;
 
 /**
  * Author: lovegod
@@ -8,7 +11,7 @@ import com.xiaoqiao.prmgserver.bean.ParkDetail;
  */
 public interface ParkMapper {
      //查询所有停车场的名称
-    public String[] findParkList() throws Exception;
+    public List<ParkName> findParkList() throws Exception;
     //根据停车场名获取停车场详细信息
     public ParkDetail findParkDetailByPname(String Pname) throws  Exception;
 

@@ -1,6 +1,7 @@
 package com.xiaoqiao.prmgserver.test;
 
 import com.xiaoqiao.prmgserver.bean.ParkDetail;
+import com.xiaoqiao.prmgserver.bean.ParkName;
 import com.xiaoqiao.prmgserver.mybatismapper.ParkMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -38,9 +39,9 @@ public class Test {
         SqlSession sqlSession=sqlSessionFactory.openSession();
         //创建ParkMapper对象，mybatis自动生成mapper代理对象
         ParkMapper parkMapper=sqlSession.getMapper(ParkMapper.class);
-        String[] parkList=parkMapper.findParkList();
-        for (int i = 0; i <parkList.length ; i++) {
-            System.out.println(parkList[i]);
+        List<ParkName> parkList=parkMapper.findParkList();
+        for (int i = 0; i <parkList.size() ; i++) {
+          System.out.println(parkList.get(i));
         }
     }
     @org.junit.Test

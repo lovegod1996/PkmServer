@@ -8,7 +8,7 @@
 -->
 <mapper namespace="com.xiaoqiao.prmgserver.mybatismapper.ParkMapper">
     <!-- 查询停车场的信息-->
-    <select id="findParkList" resultType="java.lang.String">
+    <select id="findParkList" resultType="com.xiaoqiao.prmgserver.bean.ParkName">
         SELECT  Pname FROM  pinfor
     </select>
     <!-- 根据停车场名称查找停车场详细信息 -->

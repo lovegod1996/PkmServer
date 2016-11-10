@@ -1,5 +1,6 @@
 package com.xiaoqiao.prmgserver.servlet;
 
+import com.xiaoqiao.prmgserver.bean.ParkName;
 import com.xiaoqiao.prmgserver.mybatismapper.ParkMapper;
 import com.xiaoqiao.prmgserver.util.CommonUtil;
 import com.xiaoqiao.prmgserver.util.SqlSessionUtil;
@@ -12,7 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,12 +33,13 @@ public class ParkListServlet extends HttpServlet {
         SqlSession sqlSession=sqlSessionFactory.openSession();
         //创建ParkMapper对象，mybatis自动生成mapper代理对象
         ParkMapper parkMapper=sqlSession.getMapper(ParkMapper.class);
+        List<ParkName> parklist=new ArrayList<ParkName>();
         try {
-            String[] parkList=parkMapper.findParkList();
+            parklist=parkMapper.findParkList();
            //封装json
             Map<String,Object> data=new HashMap<String,Object>();
             data.put("response","parklist");
-            data.put("parklist",parkList);
+            data.put("parklist",parklist);
 
             CommonUtil.renderJson(response,data);
 

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,8 +27,9 @@ public class ParkDetailServlet extends HttpServlet {
       data(request,response);
     }
 
-    private void data(HttpServletRequest request, HttpServletResponse response) {
+    private void data(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
         String panme=request.getParameter("pname");
+        panme=new String(panme.getBytes("ISO-8859-1"),"UTF-8");
 
         SqlSessionFactory sqlSessionFactory= SqlSessionUtil.getSqlSessionFactory();
         SqlSession sqlSession=sqlSessionFactory.openSession();

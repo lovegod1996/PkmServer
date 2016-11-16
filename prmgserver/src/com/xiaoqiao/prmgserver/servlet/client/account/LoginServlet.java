@@ -1,6 +1,6 @@
-package com.xiaoqiao.prmgserver.servlet;
+package com.xiaoqiao.prmgserver.servlet.client.account;
 
-import com.xiaoqiao.prmgserver.bean.ParkDetail;
+import com.xiaoqiao.prmgserver.bean.User;
 import com.xiaoqiao.prmgserver.mybatismapper.ParkMapper;
 import com.xiaoqiao.prmgserver.util.CommonUtil;
 import com.xiaoqiao.prmgserver.util.SqlSessionUtil;
@@ -19,17 +19,23 @@ import java.util.Map;
 
 /**
  * Author: lovegod
- * Created by 123 on 2016/11/9.
+ * Created by 123 on 2016/11/16.
  */
-@WebServlet(name = "ParkDetailServlet" ,urlPatterns = {"/parkdetail"})
-public class ParkDetailServlet extends HttpServlet {
+@WebServlet(name = "LoginServlet" ,urlPatterns = {"/login"})
+public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      data(request,response);
+data(request,response);
     }
 
     private void data(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
-        String panme=request.getParameter("pname");
-        panme=new String(panme.getBytes("ISO-8859-1"),"UTF-8");
+        String username=request.getParameter("username");
+        username=new String(username.getBytes("ISO-8859-1"),"UTF-8");
+
+        String password=request.getParameter("password");
+        password=new String(password.getBytes("ISO-8859-1"),"UTF-8");
+        User loginUser=new User();
+        loginUser.setPnum(username);
+        loginUser.setPasw(password);
 
         SqlSessionFactory sqlSessionFactory= SqlSessionUtil.getSqlSessionFactory();
         SqlSession sqlSession=sqlSessionFactory.openSession();
@@ -37,17 +43,25 @@ public class ParkDetailServlet extends HttpServlet {
         ParkMapper parkMapper=sqlSession.getMapper(ParkMapper.class);
 
         try {
-            ParkDetail parkDetail=parkMapper.findParkDetailByPname(panme);
+            User user=parkMapper.findUserByUnameAndPas(loginUser);
+            if(user!=null){
+                Map<String,Object> data=new HashMap<String,Object>();
+                data.put("response","login");
+                data.put("loginState","true");
 
-            Map<String,Object> data=new HashMap<String,Object>();
-            data.put("response","parkdetail");
-            data.put("panme",panme);
-            data.put("parkdetail",parkDetail);
+                CommonUtil.renderJson(response,data);
+            }else{
+                Map<String,Object> data=new HashMap<String,Object>();
+                data.put("response","login");
+                data.put("loginState","false");
 
-            CommonUtil.renderJson(response,data);
+                CommonUtil.renderJson(response,data);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+
 
     }
 

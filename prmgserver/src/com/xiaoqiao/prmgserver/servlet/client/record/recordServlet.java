@@ -22,7 +22,7 @@ import java.util.Map;
  * Author: lovegod
  * Created by 123 on 2016/11/16.
  */
-@WebServlet(name = "recordServlet",urlPatterns = "{/record}")
+@WebServlet(name = "recordServlet",urlPatterns = {"/record"})
 public class recordServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
      data(request,response);

@@ -18,6 +18,8 @@ public interface ParkMapper {
     public ParkDetail findParkDetailByPname(String Pname) throws  Exception;
     //根据用户名和密码获取登陆信息
     public User findUserByUnameAndPas(User user) throws  Exception;
+    //根据用户名查找用户信息
+    public User findUserByName(String name) throws  Exception;
     //添加用户信息
     public void addUser(User user) throws  Exception;
     //根据用户名查找停车记录

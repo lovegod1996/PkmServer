@@ -17,10 +17,9 @@
     </select>
     <!--  登陆-->
     <select id="findUserByUnameAndPas" parameterType="com.xiaoqiao.prmgserver.bean.User" resultType="com.xiaoqiao.prmgserver.bean.User">
-        SELECT  * FROM  perinfor WHERE  Pnum  LIKE  '${User.Pname} ' AND Pasw LIKE  '${User.Pasw}'
+        SELECT  * FROM  perinfor WHERE  Pnum  LIKE  '${Pnum}' AND Pasw LIKE  '${Pasw}'
     </select>
     <!--注册-->
-
     <insert id="addUser" parameterType="com.xiaoqiao.prmgserver.bean.User">
         <!--
                 将插入数据的主键返回，返回到user对象中
@@ -36,7 +35,10 @@
         </selectKey>
         INSERT  INTO  perinfor (Pnum, Pasw,Pname,Cnum) value (#{Pnum},#{Pasw},#{Pname},#{Cnum})
     </insert>
-
+     <!--根据用户名查找用户-->
+    <select id="findUserByName" parameterType="java.lang.String" resultType="com.xiaoqiao.prmgserver.bean.User">
+          SELECT  * FROM  perinfor WHERE  Pnum  LIKE  '${value}'
+    </select>
     <!--根据用户名查找停车记录-->
     <select id="findRecordByUsername" parameterType="java.lang.String" resultType="com.xiaoqiao.prmgserver.bean.Record">
         SELECT  * FROM fee WHERE  Unum LIKE  '${value}' ORDER  BY  fid DESC

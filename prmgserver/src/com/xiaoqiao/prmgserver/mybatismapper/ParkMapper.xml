@@ -15,6 +15,10 @@
     <select id="findParkDetailByPname" parameterType="java.lang.String" resultType="com.xiaoqiao.prmgserver.bean.ParkDetail">
         SELECT * FROM  pinfor WHERE  Pname LIKE '${value}'
     </select>
+    <!--根据wifi名查找停车场信息-->
+    <select id="findParkByWifiname" parameterType="java.lang.String" resultType="com.xiaoqiao.prmgserver.bean.ParkDetail">
+        SELECT * FROM  pinfor WHERE  wifiname LIKE '${value}'
+    </select>
     <!--  登陆-->
     <select id="findUserByUnameAndPas" parameterType="com.xiaoqiao.prmgserver.bean.User" resultType="com.xiaoqiao.prmgserver.bean.User">
         SELECT  * FROM  perinfor WHERE  Pnum  LIKE  '${Pnum}' AND Pasw LIKE  '${Pasw}'
@@ -43,6 +47,38 @@
     <select id="findRecordByUsername" parameterType="java.lang.String" resultType="com.xiaoqiao.prmgserver.bean.Record">
         SELECT  * FROM fee WHERE  Unum LIKE  '${value}' ORDER  BY  fid DESC
     </select>
+
+    <!--根据用户名查询进场时间-->
+    <select id="findInTimeByUsername" parameterType="java.lang.String" resultType="java.lang.String">
+        select Intime from fee where Unum = '${value}'  and Outtime is null
+    </select>
+    <!--
+    进场操作
+    1.停车场停车位减少一
+    2.停车记录增加一
+    -->
+    <insert id="getIntoP" parameterType="com.xiaoqiao.prmgserver.bean.Record" >
+
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into fee(Unum,Pname,Intime) values(#{Unum},#{Pname},#{Intime})
+    </insert>
+    <update id="updateInParkingLot" parameterType="java.lang.String">
+        update pinfor set parking_left=parking_left-1  where Pname ='${value}'
+    </update>
+    <!--
+    出场操作
+    1.停车位增加一
+    2.补充停车记录
+    -->
+<update id="updateFee" parameterType="com.xiaoqiao.prmgserver.bean.Record">
+    UPDATE  fee SET  Outtime=#{Outtime},Pay=#{Pay} WHERE  Unum=#{Unum} AND  Outtime is NULL ;
+</update>
+
+    <update id="updateOutParkingLot" parameterType="java.lang.String">
+        update pinfor set parking_left=parking_left+1  where Pname ='${value}'
+    </update>
 </mapper>
 
 

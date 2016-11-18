@@ -24,4 +24,18 @@ public interface ParkMapper {
     public void addUser(User user) throws  Exception;
     //根据用户名查找停车记录
     public List<Record> findRecordByUsername(String Uname) throws  Exception;
+    //根据wifi名查找停车场
+    public ParkDetail findParkByWifiname(String wifiName) throws  Exception;
+    //根据用户名查询进场时间
+    public String findInTimeByUsername(String username)throws  Exception;
+    //进场操作
+    public void getIntoP(Record record) throws  Exception;
+    public void updateInParkingLot(String parkName) throws  Exception;
+    //出场操作
+    public  void updateFee(Record record) throws  Exception;
+    public  void updateOutParkingLot(String parkName) throws  Exception;
+
+
+
+
 }

@@ -47,6 +47,8 @@ public class FindUserByNameServlet extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            sqlSession.commit();
         }
     }
 

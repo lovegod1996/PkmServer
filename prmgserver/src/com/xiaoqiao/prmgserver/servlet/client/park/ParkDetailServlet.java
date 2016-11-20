@@ -47,6 +47,8 @@ public class ParkDetailServlet extends HttpServlet {
             CommonUtil.renderJson(response,data);
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            sqlSession.commit();
         }
 
     }

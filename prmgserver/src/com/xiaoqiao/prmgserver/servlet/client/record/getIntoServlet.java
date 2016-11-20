@@ -63,6 +63,9 @@ data(request,response);
             data1.put("getState","false");
             CommonUtil.renderJson(response,data1);
             e.printStackTrace();
+        }finally {
+
+            sqlSession.commit();
         }
 
 

@@ -34,7 +34,7 @@
                 order：SELECT LAST_INSERT_ID()执行顺序，相对于insert语句来说它的执行顺序
                 resultType：指定SELECT LAST_INSERT_ID()的结果类型
                  -->
-        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+        <selectKey keyProperty="UID" order="BEFORE" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
         INSERT  INTO  perinfor (Pnum, Pasw,Pname,Cnum) value (#{Pnum},#{Pasw},#{Pname},#{Cnum})
@@ -52,6 +52,33 @@
     <select id="findInTimeByUsername" parameterType="java.lang.String" resultType="java.lang.String">
         select Intime from fee where Unum = '${value}'  and Outtime is null
     </select>
+    <!--
+    进场操作
+    1.停车场停车位减少一
+    2.停车记录增加一
+    -->
+    <insert id="getIntoP" parameterType="com.xiaoqiao.prmgserver.bean.Record" >
+
+     <selectKey keyProperty="fid" order="BEFORE" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into fee(Unum,Pname,Intime) values(#{Unum},#{Pname},#{Intime})
+    </insert>
+    <update id="updateInParkingLot" parameterType="java.lang.String">
+        update pinfor set parking_left=parking_left-1  where Pname ='${value}'
+    </update>
+    <!--
+    出场操作
+    1.停车位增加一
+    2.补充停车记录
+    -->
+<update id="updateFee" parameterType="com.xiaoqiao.prmgserver.bean.Record">
+    UPDATE  fee SET  Outtime='${Outtime}',Pay='${Pay}' WHERE  Unum='${Unum}' AND  Outtime is NULL ;
+</update>
+
+    <update id="updateOutParkingLot" parameterType="java.lang.String">
+        update pinfor set parking_left=parking_left+1  where Pname ='${value}'
+    </update>
 </mapper>
 
 

@@ -60,6 +60,8 @@ data(request,response);
 
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            sqlSession.commit();
         }
 
 

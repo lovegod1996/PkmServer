@@ -45,6 +45,8 @@ public class ParkListServlet extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            sqlSession.commit();
         }
 
     }

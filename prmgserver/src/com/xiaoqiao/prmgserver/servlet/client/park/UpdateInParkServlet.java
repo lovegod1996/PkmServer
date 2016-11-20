@@ -34,6 +34,7 @@ public class UpdateInParkServlet extends HttpServlet {
         SqlSession sqlSession=sqlSessionFactory.openSession();
         //创建ParkMapper对象，mybatis自动生成mapper代理对象
         ParkMapper parkMapper=sqlSession.getMapper(ParkMapper.class);
+
         try {
             parkMapper.updateInParkingLot(parkname);
             Map<String,Object> data1=new HashMap<String,Object>();
@@ -51,6 +52,8 @@ public class UpdateInParkServlet extends HttpServlet {
 
             CommonUtil.renderJson(response,data1);
             e.printStackTrace();
+        }finally {
+            sqlSession.commit();
         }
     }
 

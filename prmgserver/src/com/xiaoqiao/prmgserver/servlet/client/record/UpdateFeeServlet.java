@@ -34,7 +34,7 @@ data(request,response);
         pay=new String(pay.getBytes("ISO-8859-1"),"UTF-8");
         String outtime=request.getParameter("outtime");
         outtime=new String(outtime.getBytes("ISO-8859-1"),"UTF-8");
-
+        System.out.println(username+"   "+pay+"   "+outtime);
         Record record=new Record();
         record.setUnum(username);
         record.setOuttime(outtime);
@@ -63,6 +63,8 @@ data(request,response);
             data.put("updateState","false");
             CommonUtil.renderJson(response,data);
             e.printStackTrace();
+        }finally {
+            sqlSession.commit();
         }
     }
 

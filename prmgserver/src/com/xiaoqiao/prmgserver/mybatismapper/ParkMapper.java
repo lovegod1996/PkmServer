@@ -1,9 +1,6 @@
 package com.xiaoqiao.prmgserver.mybatismapper;
 
-import com.xiaoqiao.prmgserver.bean.ParkDetail;
-import com.xiaoqiao.prmgserver.bean.ParkName;
-import com.xiaoqiao.prmgserver.bean.Record;
-import com.xiaoqiao.prmgserver.bean.User;
+import com.xiaoqiao.prmgserver.bean.*;
 
 import java.util.List;
 
@@ -34,7 +31,7 @@ public interface ParkMapper {
     //出场操作
     public  void updateFee(Record record) throws  Exception;
     public  void updateOutParkingLot(String parkName) throws  Exception;
-
+   public void userPay(UserPay userPay) throws Exception;
 
 
 

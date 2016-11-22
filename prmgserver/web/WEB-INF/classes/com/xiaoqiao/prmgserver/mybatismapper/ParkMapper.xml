@@ -15,6 +15,11 @@
     <select id="findParkDetailByPname" parameterType="java.lang.String" resultType="com.xiaoqiao.prmgserver.bean.ParkDetail">
         SELECT * FROM  pinfor WHERE  Pname LIKE '${value}'
     </select>
+    <!--用户离开付费-->
+<update id="userPay" parameterType="com.xiaoqiao.prmgserver.bean.UserPay">
+    UPDATE  perinfor SET  Money=Money-#{Pay} WHERE  Pnum=#{Pnum}
+</update>
+
     <!--根据wifi名查找停车场信息-->
     <select id="findParkByWifiname" parameterType="java.lang.String" resultType="com.xiaoqiao.prmgserver.bean.ParkDetail">
         SELECT * FROM  pinfor WHERE  wifiname LIKE '${value}'
@@ -45,7 +50,7 @@
     </select>
     <!--根据用户名查找停车记录-->
     <select id="findRecordByUsername" parameterType="java.lang.String" resultType="com.xiaoqiao.prmgserver.bean.Record">
-        SELECT  * FROM fee WHERE  Unum LIKE  '${value}' ORDER  BY  fid DESC
+        SELECT  * FROM fee WHERE  Unum LIKE  '${value}' AND Outtime IS  NOT  NULL  ORDER  BY  fid DESC
     </select>
 
     <!--根据用户名查询进场时间-->

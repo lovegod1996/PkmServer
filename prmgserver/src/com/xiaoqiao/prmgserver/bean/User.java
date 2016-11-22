@@ -12,6 +12,15 @@ public class User {
     private String CType;
     private String Cnum;
     private String RID;
+    private Double Money;
+
+    public Double getMoney() {
+        return Money;
+    }
+
+    public void setMoney(Double money) {
+        Money = money;
+    }
 
     public User() {
         super();

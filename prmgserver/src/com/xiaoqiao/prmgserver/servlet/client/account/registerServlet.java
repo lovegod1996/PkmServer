@@ -3,6 +3,7 @@ package com.xiaoqiao.prmgserver.servlet.client.account;
 import com.xiaoqiao.prmgserver.bean.User;
 import com.xiaoqiao.prmgserver.mybatismapper.ParkMapper;
 import com.xiaoqiao.prmgserver.util.CommonUtil;
+import com.xiaoqiao.prmgserver.util.SHAUtil;
 import com.xiaoqiao.prmgserver.util.SqlSessionUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -42,7 +43,6 @@ data(request,response);
 
         User uu=new User();
         uu.setPnum(username);
-        uu.setPasw(password);
         uu.setPname(name);
         uu.setCnum(carnum);
 
@@ -52,7 +52,9 @@ data(request,response);
         ParkMapper parkMapper=sqlSession.getMapper(ParkMapper.class);
 
         try {
-
+            String pp= SHAUtil.shaEncode(password);
+            uu.setPasw(pp);
+            System.out.println(pp);
             parkMapper.addUser(uu);
 
             Map<String,Object> data=new HashMap<String,Object>();

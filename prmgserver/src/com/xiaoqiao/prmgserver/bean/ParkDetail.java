@@ -10,7 +10,7 @@ public class ParkDetail {
     private String adress;
     private String CarCount;
     private String PayCri;
-    private String RSSI;
+    private int rssi;
     private String wifipwd;
     private String wifiname;
     private String parking_left;
@@ -56,12 +56,12 @@ public class ParkDetail {
         PayCri = payCri;
     }
 
-    public String getRSSI() {
-        return RSSI;
+    public int getRssi() {
+        return rssi;
     }
 
-    public void setRSSI(String RSSI) {
-        this.RSSI = RSSI;
+    public void setRssi(int rssi) {
+        this.rssi = rssi;
     }
 
     public String getWifipwd() {
@@ -104,7 +104,7 @@ public class ParkDetail {
                 ", adress='" + adress + '\'' +
                 ", CarCount='" + CarCount + '\'' +
                 ", PayCri='" + PayCri + '\'' +
-                ", RSSI='" + RSSI + '\'' +
+                ", RSSI='" + rssi + '\'' +
                 ", wifipwd='" + wifipwd + '\'' +
                 ", wifiname='" + wifiname + '\'' +
                 ", parking_left='" + parking_left + '\'' +

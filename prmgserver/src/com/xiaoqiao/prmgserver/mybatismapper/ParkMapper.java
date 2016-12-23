@@ -11,6 +11,8 @@ import java.util.List;
 public interface ParkMapper {
      //查询所有停车场的名称
     public List<ParkName> findParkList() throws Exception;
+    //查询所有停车场的名称
+    public List<ParkDetail> findParkDetailList() throws Exception;
     //根据停车场名获取停车场详细信息
     public ParkDetail findParkDetailByPname(String Pname) throws  Exception;
     //根据用户名和密码获取登陆信息
